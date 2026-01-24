@@ -5,7 +5,6 @@
 #
 
 import rev
-from magicbot import will_reset_to
 from wpilib.drive import DifferentialDrive
 
 from constants import DriveConstants
@@ -13,12 +12,6 @@ from constants import OperatorConstants
 
 
 class DriveTrain:
-
-    #x_speed = will_reset_to(0.0)
-    #z_rotation = will_reset_to(0.0)
-
-    x_speed = 0
-    z_rotation = 0
     def __init__(self) -> None:
         # create motors for drive
         self.left_leader = rev.SparkMax(
@@ -67,6 +60,9 @@ class DriveTrain:
         )
         
         self.drive = DifferentialDrive(self.left_leader, self.right_leader)
+
+        self.x_speed = 0
+        self.z_rotation = 0
 
     def execute(self) -> None:
         self.x_speed = self.x_speed * OperatorConstants.DRIVE_SCALING

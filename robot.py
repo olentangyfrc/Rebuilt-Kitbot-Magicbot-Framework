@@ -8,12 +8,13 @@ import magicbot
 import rev
 import wpilib
 import wpimath
+import hal
 
 from utilities_functions import filter_input
 from components.drivetrain import DriveTrain
 from components.fuel import FuelMechanism
 from components.launch_sequence import LaunchSequence
-from constants import DriveConstants, FuelConstants, OperatorConstants
+from constants import OperatorConstants
 
 
 class MyRobot(magicbot.MagicRobot):
@@ -22,8 +23,6 @@ class MyRobot(magicbot.MagicRobot):
     fuel: FuelMechanism
 
     def createObjects(self) -> None:
-        # Used to track usage of Kitbot code, please do not remove.
-        #hal.report(hal.tResourceType.kResourceType_Framework, 10)
 
         # The driver's controller
         self.driver_controller = wpilib.XboxController(
@@ -42,8 +41,7 @@ class MyRobot(magicbot.MagicRobot):
             self.fuel.intake()
         elif self.driver_controller.getBButton():
             self.fuel.eject()
-
-        #if self.driver_controller.getXButtonPressed():
-            #self.fuel.shooter_mod_voltage = self.fuel.shooter_mod_voltage - 1
-        #elif self.driver_controller.getYButtonPressed():
-            #self.fuel.shooter_mod_voltage = self.fuel.shooter_mod_voltage + 1
+        else:
+            self.fuel.stop()
+        
+            
