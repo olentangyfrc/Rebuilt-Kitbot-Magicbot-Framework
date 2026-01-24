@@ -5,10 +5,7 @@
 # the WPILib BSD license file in the root directory of this project.
 #
 import magicbot
-import rev
 import wpilib
-import wpimath
-import hal
 
 from utilities_functions import filter_input
 from components.drivetrain import DriveTrain
